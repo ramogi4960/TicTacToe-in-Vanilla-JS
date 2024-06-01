@@ -6,6 +6,11 @@ body {
     border: none;
     margin: 0;
     background-color: black;
+    color: aqua;
+}
+
+h1, p {
+    text-align: center;
 }
 
 #the-game {
