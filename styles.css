@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    border: none;
+    margin: 0;
+    background-color: black;
+}
+
+#the-game {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.5%;
+    width: 30%;
+    max-width: 400px;
+    min-width: 200px;
+    aspect-ratio: 1 / 1;
+    margin: 10% auto;
+    padding: 10px;
+    background-color: aqua;
+}
+
+#the-game button {
+    border-radius: 10px;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+    font-size: 7vw;
+    color: rgb(27, 38, 136);
+}
+
