@@ -84,5 +84,5 @@ h1 {
     color: black;
     font-family: cursive;
     margin: 20% auto;
-    animation: rotation 2s infinite ease-in-out;
+    /* animation: rotation 2s infinite ease-in-out; */
 }

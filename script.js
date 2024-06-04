@@ -21,6 +21,7 @@ Winner function for finding a winner.
 
 let player_turn = true;
 
+// function for checking if there's a winner
 function winner() {
     const values = [];
     for (let item of all_buttons) {
@@ -37,6 +38,7 @@ function winner() {
     return false;
 }
 
+// function for what happens when you click on a button
 function clicking(button_id) {
     let id = Number(button_id[button_id.length - 1]);
     if (player_turn) {
@@ -68,5 +70,20 @@ function reset() {
     for (let item of all_buttons) {
         item.innerText = "";
     }
+    let x = document.querySelector("#the-game");
+    // x.innerText = '';
+    x.innerHTML = `
+    <button id="button1" onclick="clicking('button1')"></buttton>
+            <button id="button2" onclick="clicking('button2')"></buttton>
+            <button id="button3" onclick="clicking('button3')"></buttton>
+            <button id="button4" onclick="clicking('button4')"></buttton>
+            <button id="button5" onclick="clicking('button5')"></buttton>
+            <button id="button6" onclick="clicking('button6')"></buttton>
+            <button id="button7" onclick="clicking('button7')"></buttton>
+            <button id="button8" onclick="clicking('button8')"></buttton>
+            <button id="button9" onclick="clicking('button9')"></buttton>
+    `;
+    x.style.display = "grid";
     
 }
+document.querySelector("#reset").addEventListener("click", reset);
