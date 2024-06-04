@@ -1,86 +1,72 @@
+// find the array that carries all button objects of the game
+const all_buttons = document.querySelectorAll("#the-game button")
+/*
+Functions required:
+Clicking function on all buttons.
+Winner function for finding a winner.
+ */
+
+
+// switch (true) {
+        //     case (values[0] === values[1] && values[1] === values[2] && values[2] !== ""): return true;
+        //     case (values[3] === values[4] && values[4] === values[5] && values[5] !== ""): return true;
+        //     case (values[6] === values[7] && values[7] === values[8] && values[8] !== ""): return true;
+        //     case (values[0] === values[3] && values[3] === values[6] && values[6] !== ""): return true;
+        //     case (values[1] === values[4] && values[4] === values[7] && values[7] !== ""): return true;
+        //     case (values[2] === values[5] && values[5] === values[8] && values[8] !== ""): return true; 
+        //     case (values[0] === values[4] && values[4] === values[8] && values[8] !== ""): return true;
+        //     case (values[2] === values[4] && values[4] === values[6] && values[6] !== ""): return true;
+        //     default: return false;
+        // }
+
 let player_turn = true;
 
-function checker() {
-    const buttons = document.querySelectorAll("button");
-    if (buttons[0].innerText === buttons[1].innerText && buttons[1].innerText === buttons[2].innerText && buttons[2].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
+function winner() {
+    const values = [];
+    for (let item of all_buttons) {
+        values.push(item.innerText);
     }
-    else if (buttons[3].innerText === buttons[4].innerText && buttons[4].innerText === buttons[5].innerText && buttons[4].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
+    if (values[0] === values[1] && values[1] === values[2] && values[2] !== "") { return true}
+    else if (values[3] === values[4] && values[4] === values[5] && values[5] !== "") { return true}
+    else if (values[6] === values[7] && values[7] === values[8] && values[8] !== "") { return true}
+    else if (values[0] === values[3] && values[3] === values[6] && values[6] !== "") { return true}
+    else if (values[1] === values[4] && values[4] === values[7] && values[7] !== "") { return true}
+    else if (values[2] === values[5] && values[5] === values[8] && values[8] !== "") { return true}
+    else if (values[0] === values[4] && values[4] === values[8] && values[8] !== "") { return true}
+    else if (values[2] === values[4] && values[4] === values[6] && values[6] !== "") { return true}
+    return false;
+}
+
+function clicking(button_id) {
+    let id = Number(button_id[button_id.length - 1]);
+    if (player_turn) {
+        all_buttons[id - 1].innerHTML = "X";
+        if (winner()) {
+            let the_game = document.querySelector("#the-game");
+            the_game.innerHTML = `
+            <h1 id="win">Player 1 wins</h1>
+            `;
+            document.querySelector("#the-game").style.display = "block";
         }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
+        player_turn = false
+        document.querySelector("h1").innerText = "Player 2's Turn";
+    } else {
+        all_buttons[id - 1].innerHTML = "O";
+        if (winner()) {
+            let the_game = document.querySelector("#the-game");
+            the_game.innerHTML = `
+            <h1 id="win">Player 2 wins</h1>
+            `;
+            document.querySelector("#the-game").style.display = "block";
         }
-    }
-    else if (buttons[6].innerText === buttons[7].innerText && buttons[7].innerText === buttons[8].innerText && buttons[8].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
-    }
-    else if (buttons[0].innerText === buttons[3].innerText && buttons[3].innerText === buttons[6].innerText && buttons[6].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
-    }
-    else if (buttons[1].innerText === buttons[4].innerText && buttons[4].innerText === buttons[7].innerText && buttons[4].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
-    }
-    else if (buttons[2].innerText === buttons[5].innerText && buttons[5].innerText === buttons[8].innerText && buttons[2].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
-    }
-    else if (buttons[0].innerText === buttons[4].innerText && buttons[4].innerText === buttons[8].innerText && buttons[4].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
-    }
-    else if (buttons[2].innerText === buttons[4].innerText && buttons[4].innerText === buttons[6].innerText && buttons[2].innerText !== "") {
-        if (player_turn) {
-            document.getElementById("winner").innerHTML = "Player 2 Wins!";
-        }
-        else {
-            document.getElementById("winner").innerHTML = "Player 1 Wins!";
-        }
+        player_turn = true;
+        document.querySelector("h1").innerText = "Player 1's Turn";
     }
 }
 
-function clicked(button_number) {
-    let b = document.querySelector(button_number);
-    if (!b.innerText) {
-        if (player_turn) {
-            player_turn = false;
-            b.innerText = "X";
-            document.querySelector("p").innerHTML = "Player 2's Turn";
-        }
-        else {
-            player_turn = true;
-            b.innerText = "O";
-            document.querySelector("p").innerHTML = "Player 1's Turn";
-        }
+function reset() {
+    for (let item of all_buttons) {
+        item.innerText = "";
     }
-    checker();
+    
 }

@@ -1,36 +1,88 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
-    border: none;
-    margin: 0;
     background-color: black;
-    color: aqua;
 }
 
-h1, p {
-    text-align: center;
+@keyframes rotation {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
 }
 
 #the-game {
+    background: linear-gradient(
+        135deg,
+        transparent,
+        white 40%,
+        white 60%,
+        transparent
+    );
+    border-radius: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 2.5%;
-    width: 30%;
-    max-width: 400px;
-    min-width: 200px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5%;
+    padding: 2%;
+    width: 40%;
     aspect-ratio: 1 / 1;
-    margin: 10% auto;
-    padding: 10px;
-    background-color: aqua;
+    max-width: 400px;
+    min-width: 250px;
+    margin: 10% auto 0 auto;
 }
 
 #the-game button {
-    border-radius: 10px;
-    padding: 0;
     aspect-ratio: 1 / 1;
-    font-size: 7vw;
-    color: rgb(27, 38, 136);
+    background-color: rgb(25, 21, 43);
+    color: aliceblue;
+    padding: 0;
+    text-align: center;
+    font-size: 10vw;
+    font-family: sans-serif;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    border: none;
 }
 
+#the-game button:hover {
+    box-shadow: 0 0 50px rgb(43, 109, 167);
+    transform: scale(1.05, 1.05);
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+#reset {
+    display: block;
+    margin: 20px auto 0 auto;
+    border: 1px solid white;
+    padding: 7px 10px;
+    background-color: black;
+    color: white;
+    border-radius: 7px;
+    font-family: cursive;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#reset:hover {
+    background-color: white;
+    color: black;
+}
+
+#reset:active {
+    background-color: grey;
+    color: rgb(43, 109, 167);
+}
+
+#win {
+    text-align: center;
+    color: black;
+    font-family: cursive;
+    margin: 20% auto;
+    animation: rotation 2s infinite ease-in-out;
+}
